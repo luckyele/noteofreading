@@ -1,16 +1,19 @@
 
-参见[Markdown语法说明](http://wowubuntu.com/markdown/）
+参见[Markdown语法说明]( http://wowubuntu.com/markdown/ ）
 
 查看分支：`git branch`
+
 创建分支：`git branch <name>`
+
 切换分支：`git checkout <name>`
+
 创建+切换分支：`git checkout-b <name>`
+
 合并某分支到当前分支：`git merge <name>`
+
 删除分支：`git branch -d <name>`
 
-在GitHub上，可以任意`Fork`开源仓库；
-自己拥有Fork后的仓库的读写权限；
-可以推送`pull request`给官方仓库来贡献代码。
+在GitHub上，可以任意`Fork`开源仓库；自己拥有Fork后的仓库的读写权限；可以推送`pull request`给官方仓库来贡献代码。
 
 1. 标题设置（让字体变大，和word的标题意思一样）
 在Markdown当中设置标题，有两种方式：
