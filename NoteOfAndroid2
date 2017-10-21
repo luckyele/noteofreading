@@ -1,0 +1,22 @@
+
+如何给Android应用加一个启动画面。
+
+1. 新建启动画面的布局文件, 可以命名为activity_splash.xml。在这文件中加入自己想展示的图片或文件。多数应用在这里展示Logo，也很多在这里加广告。
+
+2. 新建一个SplahsActivity类，继承自Acitivty。这里要注意：
+(1)在显示这启动画面之前要先去掉标题.
+requestWindowFeature(window.FEATURE_NO_TITLE);
+
+(2)然后要实现显示几秒之后，自动启动应用的主活动，并自毁。
+
+ new Handler().postDelayed(new Runnable() {
+            public void run() {
+                Intent intent = new Intent(SplashActivity.this, FirstActivity.class);
+                SplashActivity.this.startActivity(intent);
+                SplashActivity.this.finish();
+            }
+        }, 3000);
+
+3.
+
+
