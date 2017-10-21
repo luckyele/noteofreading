@@ -1,5 +1,5 @@
 # 关于Python的几本书
-
+---
 
 ## No1:《简明Python教程》
 
@@ -10,43 +10,45 @@
 全书只有98页16章，特点正是简洁，涵盖了Python的各种基本知识，很多内容只是轻轻一点，但对于初学者来说却容易接受。
 
 全书包括以下章节：
-* 第01章 介绍Python
-* 第02章 安装Python
-* 第03章 最初的步骤
-* 第04章 基本概念
-* 第05章 运算符与表达式
-* 第06章 控制流（if,for,while)
-* 第07章 函数
-* 第08章 模块，介绍模块的概念。
-* 第09章 数据结构，介绍了如何使用列表、元组和字典。
-* 第10章 脚本编写案例（文档保存）
-* 第11章 面向对象的编程
-* 第12章 输入/输出。
-* 第13章 处理异常
+第01章 介绍Python
+第02章 安装Python
+第03章 最初的步骤
+第04章 基本概念
+第05章 运算符与表达式
+第06章 控制流（if,for,while)
+第07章 函数
+第08章 模块，介绍模块的概念。
+第09章 数据结构，介绍了如何使用列表、元组和字典。
+第10章 脚本编写案例（文档保存）
+第11章 面向对象的编程
+第12章 输入/输出。
+第13章 处理异常
 
 try...except语句处理异常；
 raise语句引发异常（需要指明错误或异常的名称，以及触发对象，应该是一个Error或Exception类的直接或间接导出类）；
 try...finally语句，必须要做的操作可放在finally块中，
 
-* 第14章 
+第14章 介绍Python标准库，介绍了sys,os模块，其他模块功能可以查标准文档。
 
-介绍Python标准库，介绍了sys,os模块，其他模块功能可以查标准文档。
+第15章 更多python的内容，包括：
 
-* 第15章
-
-更多python的内容，包括：
 特殊方法，《Python参考手册》中可以找到这个大列表。
 列表综合，也就是把更多的列表操作组合在一起使用。如[x*2 for x in list if x > 2 ]，将list列表中大于2的元素扩大为原来的2倍。
-在函数中接收元组和列表，分别使用*、\**前缀。这种方法在函数需要获取可变数量的参数时特别有用。
+在函数中接收元组和列表，分别使用\*、\**前缀。这种方法在函数需要获取可变数量的参数时特别有用。
 lambda形式，创建新的函数对象，并在动行时返回。
 exec语句   执行字符串或文件中的Python语句
 eval语句   计算字符串的有效Python表达式
 assert语句 声明某个条件是真，失败时引发AssertionError。
 repr语句   反引号可完成相同的功能，取得对象的规范字符串表示
-* 第16章提出一个练习题，即用Python编写一个命令行版的通讯录管理程序，还介绍了几个使用Python的GUI库，包括：
+
+第16章 提出一个练习题，即用Python编写一个命令行版的通讯录管理程序，还介绍了几个使用Python的GUI库，包括：
+
 PyQt，这是Qt工具包的Python绑定，Qt工具包是KDE的基石，内容参看《使用Python语言的GUI编程：Qt版》。
+
 PyGTK，是GTK+工具包的Python绑定，GTK+是GNOME的基石，内容参看官方主页。
+
 wxPython，是wxWidgets工具包的Python绑定，可移植性好，多平台运行。
+
 TkInter，历史悠久的GUI工具包，IDLE就是一个TkInter程序，是标准Python发行版的一部分。
 
 如何选择GUI库，作者认为可以考虑三个因素，即是否付费，运行环境，以及用户GUI类型（KDE 或GNOME）。作者还强烈建议开始大型Python程序开发前要浏览Python标准文档。
@@ -54,19 +56,21 @@ TkInter，历史悠久的GUI工具包，IDLE就是一个TkInter程序，是标�
 利用其他编程语言的功能库，Python还有其他一些实现。如：Jython，Java实现的Python解释器，稳定成熟，可用Python编写程序同时使用Java库。IronPython，C#实现的Python解释器。Lython，Python的Lisp的实现。
 
 资源：
-1）Python.org
-2）comp.lang.python
-3）《Python 实用大全》
-4）《迷人的Python》 David Mertz
-5）《深入理解Python》 <-- 这本书作者建议作为第二本。
-6） Daily Python-URL!
-7） Vaults of Parnassus
-8） ONLamp.com Python DevCenter
-9） dirtSimple.org
-10) Python Notes
+Python.org
+comp.lang.python
+《Python 实用大全》
+《迷人的Python》 David Mertz
+《深入理解Python》 <-- 这本书作者建议作为第二本。
+Daily Python-URL!
+Vaults of Parnassus
+ONLamp.com Python DevCenter
+dirtSimple.org
+Python Notes
 
 Python读标准输入
+
 raw_input() 从标准输入读取一行，并返回一个字符串（去掉结尾的换行符）
+
 input()  与raw_input()基本可以互换，但假设输入是有效的表达式，并返回运算结果。
 
 ## No2: 《深入理解Python》
@@ -80,8 +84,10 @@ input()  与raw_input()基本可以互换，但假设输入是有效的表达式
 python是依据sys.path中的目录逐个搜索导入模块。在python中一切都是对象。
 
 测试模块的方法：因为python模块都是对象，可以利用对象的属性（所有的模块都有一个内置属性__name__,如果import模块，__name__为模块的文件名；如果是直接运行模块，__name__的值将缺省为__main__）对模块进行测试。方法是:
-> if __name__ == "__main__":
-> 	<test code>
+
+<pre><code>if __name__ == "__main__":
+	<test code>
+</prc></code>
 
 第3章谈到内置数据类型
 
