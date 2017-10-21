@@ -1,6 +1,5 @@
 # 关于Python的几本书
 
-
 ## No1:《简明Python教程》
 
 最早看到的是《简明Python教程》，电子版中有www.linuxidc.com字样，应该是从linux公社下载到的。
