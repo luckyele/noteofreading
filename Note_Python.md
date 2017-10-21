@@ -60,22 +60,22 @@ TkInter，历史悠久的GUI工具包，IDLE就是一个TkInter程序，是标�
 利用其他编程语言的功能库，Python还有其他一些实现。如：Jython，Java实现的Python解释器，稳定成熟，可用Python编写程序同时使用Java库。IronPython，C#实现的Python解释器。Lython，Python的Lisp的实现。
 
 资源：
-Python.org
-comp.lang.python
-《Python 实用大全》
-《迷人的Python》 David Mertz
-《深入理解Python》 <-- 这本书作者建议作为第二本。
-Daily Python-URL!
-Vaults of Parnassus
-ONLamp.com Python DevCenter
-dirtSimple.org
-Python Notes
++ Python.org
++ comp.lang.python
++ 《Python 实用大全》
++ 《迷人的Python》 David Mertz
++ 《深入理解Python》 <-- 这本书作者建议作为第二本。
++ Daily Python-URL!
++ Vaults of Parnassus
++ ONLamp.com Python DevCenter
++ dirtSimple.org
++ Python Notes
 
 Python读标准输入
 
-raw_input() 从标准输入读取一行，并返回一个字符串（去掉结尾的换行符）
+`raw_input()` 从标准输入读取一行，并返回一个字符串（去掉结尾的换行符）
 
-input()  与raw_input()基本可以互换，但假设输入是有效的表达式，并返回运算结果。
+`input()` 与`raw_input()`基本可以互换，但假设输入是有效的表达式，并返回运算结果。
 
 ## No2: 《深入理解Python》
 
@@ -102,11 +102,11 @@ List 是python中使用最频繁的数据类型，形如：
 也可以简写，如`li[:3]`,或`li[2:]`；
 还可以按步长切片，如`li[::-1]`，表示步长为-1，从最后一个元素开始前切片，即倒置列表。
 
-增加元素，用append()，insert()，extend()等。其中append可增加不同类型的元素，extend是将一个list中的元素加到原list中。
+增加元素，用`append()`，`insert()`，`extend()`等。其中append可增加不同类型的元素，extend是将一个list中的元素加到原list中。
 
 index("元素名")，返回第一个出现的索引。可以用in判断某个元素是否是list中，如：`if i in list`，其返回True或False。
 
-删除元素用remove()，pop()删除列表最后一个元素并返回，类似于stack。
+删除元素用`remove()`，`pop()`删除列表最后一个元素并返回，类似于stack。
 
 list可以接运算符+,+=, *等。
 
@@ -138,7 +138,7 @@ python自带的IDLE在windows下使用的是cp936编码
 
 系统的缺省编码(一般就是ascii)： `sys.getdefaultencoding() `
 
-系统当前的编码：locale.getdefaultlocale() 
+系统当前的编码： `locale.getdefaultlocale()` 
 
 系统代码中临时被更改的编码:
 
@@ -165,8 +165,7 @@ python自带的IDLE在windows下使用的是cp936编码
 	file.write(html_string)
 	file.close()
 
-`s.decode('gbk2312','ignore').encode('utf-8')`
-用ignore参数忽略非法字符。
+`s.decode('gbk2312','ignore').encode('utf-8')` 用ignore参数忽略非法字符。
 
 	>>> from urllib2 import urlopen
 	>>> for line in urlopen('http://www.ahwh.gov.cn'):
@@ -176,8 +175,14 @@ python自带的IDLE在windows下使用的是cp936编码
 
 ` <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />`
 
-os库
+## os 模块
+
 getcwd()
+
 chdir()
+
 system('mkdir today')
-针对日常的文件和目录管理任务，shutil模块
+
+## shutil模块
+
+针对日常的文件和目录管理任务。
