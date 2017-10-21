@@ -148,7 +148,6 @@ python自带的IDLE在windows下使用的是cp936编码
 > file.close()
 
 s.decode('gbk2312','ignore').encode('utf-8')
-
 用ignore参数忽略非法字符。
 
 >>> from urllib2 import urlopen
