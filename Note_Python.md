@@ -43,7 +43,10 @@ exec语句   执行字符串或文件中的Python语句
 eval语句   计算字符串的有效Python表达式
 assert语句 声明某个条件是真，失败时引发AssertionError。
 repr语句   反引号可完成相同的功能，取得对象的规范字符串表示
-* 第16章提出一个练习题，即用Python编写一个命令行版的通讯录管理程序，还介绍了几个使用Python的GUI库，包括：
+
+* 第16章
+
+提出一个练习题，即用Python编写一个命令行版的通讯录管理程序，还介绍了几个使用Python的GUI库，包括：
 PyQt，这是Qt工具包的Python绑定，Qt工具包是KDE的基石，内容参看《使用Python语言的GUI编程：Qt版》。
 PyGTK，是GTK+工具包的Python绑定，GTK+是GNOME的基石，内容参看官方主页。
 wxPython，是wxWidgets工具包的Python绑定，可移植性好，多平台运行。
@@ -80,7 +83,7 @@ input()  与raw_input()基本可以互换，但假设输入是有效的表达式
 python是依据sys.path中的目录逐个搜索导入模块。在python中一切都是对象。
 
 测试模块的方法：因为python模块都是对象，可以利用对象的属性（所有的模块都有一个内置属性__name__,如果import模块，__name__为模块的文件名；如果是直接运行模块，__name__的值将缺省为__main__）对模块进行测试。方法是:
-> if __name__ == "__main__":
+>  if __name__ == "__main__":
 > 	<test code>
 
 第3章谈到内置数据类型
@@ -120,11 +123,17 @@ linux终端输出的是utf-8编码
 python自带的IDLE在windows下使用的是cp936编码
 
 系统的缺省编码(一般就是ascii)：sys.getdefaultencoding() 
+
 系统当前的编码：locale.getdefaultlocale() 
+
 系统代码中临时被更改的编码（通过locale.setlocale(locale.LC_ALL,“zh_CN.UTF-8″)）：locale.getlocale() 
+
 文件系统的编码：sys.getfilesystemencoding() 
+
 终端的输入编码：sys.stdin.encoding 
+
 终端的输出编码：sys.stdout.encoding 
+
 代码的缺省编码：文件头上# -*- coding: utf-8 –*-
 
 > from urllib.request import urlopen
@@ -137,7 +146,9 @@ python自带的IDLE在windows下使用的是cp936编码
 > html_string=html_byte.decode(chardit1['encoding']).encode('utf-8')
 > file.write(html_string)
 > file.close()
+
 s.decode('gbk2312','ignore').encode('utf-8')
+
 用ignore参数忽略非法字符。
 
 >>> from urllib2 import urlopen
@@ -153,4 +164,3 @@ getcwd()
 chdir()
 system('mkdir today')
 针对日常的文件和目录管理任务，shutil模块
-
