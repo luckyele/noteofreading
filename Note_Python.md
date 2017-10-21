@@ -87,11 +87,10 @@ input()  与raw_input()基本可以互换，但假设输入是有效的表达式
 
 python是依据sys.path中的目录逐个搜索导入模块。在python中一切都是对象。
 
-测试模块的方法：因为python模块都是对象，可以利用对象的属性（所有的模块都有一个内置属性__name__,如果import模块，__name__为模块的文件名；如果是直接运行模块，__name__的值将缺省为__main__）对模块进行测试。方法是:
-`
-if __name__ == "__main__":
-	<test code>
-`
+测试模块的方法：因为python模块都是对象，可以利用对象的属性（所有的模块都有一个内置属性`__name__`,如果import模块，`__name__`为模块的文件名；如果是直接运行模块，`__name__`的值将缺省为`__main__`）对模块进行测试。方法是:
+
+`if __name__ == "__main__":
+	<test code>`
 
 第3章谈到内置数据类型
 
@@ -118,9 +117,11 @@ Tuple,即元素不可变的list，同样可以切片，切片会得到一个新�
 可以使用多变量赋值创建返回多个值的函数，只要返回一个包含所有值的tuple即可。
 
 映射list，在《简明python》对这种操作称为列表综合。
+
 "？".join(字符串列表) 将字符串列表的元素依次连接为一个字符串，并用"?"分隔。
 
 `s.split("?")` 用"?" 将字符串s，分割为列表。
+
 `s.split("?",x)` x可以指定分割次数；x=1时，取分隔符之前的部分，常用。
 
 第4章，本章被译为自省的威力。没看到英文版，直觉认为这里有些别扭。
@@ -140,7 +141,9 @@ python自带的IDLE在windows下使用的是cp936编码
 系统当前的编码：locale.getdefaultlocale() 
 
 系统代码中临时被更改的编码:
+
 `locale.setlocale(locale.LC_ALL,“zh_CN.UTF-8″）`
+
 `locale.getlocale() `
 
 文件系统的编码：`sys.getfilesystemencoding() `
@@ -150,29 +153,29 @@ python自带的IDLE在windows下使用的是cp936编码
 终端的输出编码：`sys.stdout.encoding `
 
 代码的缺省编码：文件头上`# -*- coding: utf-8 –*-`
-`
-from urllib.request import urlopen
-import  chardet
 
-response=urlopen(url,timeout=3)
-html_byte=response.read()
-chardit1 = chardet.detect(html_byte)
-file = open(PROJECT_NAME + '/' + str(ALLNUM) + '.html', 'wb')  
-html_string=html_byte.decode(chardit1['encoding']).encode('utf-8')
-file.write(html_string)
-file.close()
-`
+	from urllib.request import urlopen
+	import  chardet
+
+	response=urlopen(url,timeout=3)
+	html_byte=response.read()
+	chardit1 = chardet.detect(html_byte)
+	file = open(PROJECT_NAME + '/' + str(ALLNUM) + '.html', 'wb')  
+	html_string=html_byte.decode(chardit1['encoding']).encode('utf-8')
+	file.write(html_string)
+	file.close()
+
 `s.decode('gbk2312','ignore').encode('utf-8')`
 用ignore参数忽略非法字符。
-`
->>> from urllib2 import urlopen
->>> for line in urlopen('http://www.ahwh.gov.cn'):
-...     line = line.decode('gb2312','ignore').encode('utf-8')
-...     if 'charset' in line:
-...             print line
-... 
- <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-`
+
+	>>> from urllib2 import urlopen
+	>>> for line in urlopen('http://www.ahwh.gov.cn'):
+	...     line = line.decode('gb2312','ignore').encode('utf-8')
+	...     if 'charset' in line:
+	... 		print line
+
+` <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />`
+
 os库
 getcwd()
 chdir()
