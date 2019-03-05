@@ -1,0 +1,33 @@
+
+第3章介绍UI开发。从常见控件应用开始，具体介绍了TextView，Button，EditText，ImageView，ProgressBar, AlertDialog, ProgressDialog等7种控件的使用方法。着重介绍了ListView控件。
+
+View ->
+		TextView 	-> EditText
+					-> Button
+		ImageView
+		ViewGroup 	-> LinearLayout
+	          		-> RelativeLayout
+              		-> ......
+
+介绍了LinearLayout,RelativeLayout,FrameLayout,TableLayout四种基本布局。
+
+大部分应用中都会用到自定义控件，介绍了创建自定义控件的方法，先布局后代码。
+
+单位及改寸。介绍px(像素)、pt（磅 1/72英寸）、dp(密度无关像素)、sp(可伸缩像素)、dpi(屏幕密度，每英寸像素数）。可以用下面代码获得当前设备的dpi：
+
+getResource().getDisplayMetrics().xdpi // 横向密度
+getResource().getDisplayMetrics().ydpi // 纵向密度
+
+Nine-Patch图片，适当拉伸图片PNG。在最外缘（1像素宽）点黑点，设定可以拉伸的边。
+
+第4章介绍屏幕适配。Android屏幕适配是利用Fragment（碎片）实现，主要目的是更好地利用大尺寸屏幕（平板）上的空间。新闻客户端例子可用。
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,176 @@
+
+据说是一本比较好的入门书，先找到的是第一版，在国内入门类Android教程中很火。作者郭霖，网友称“郭神”。有微信公众号：guolin_blog。
+
+第1章介绍了Android发展简史。2003年Andy Rubin等人创办Android公司。2005年该公司被Google收购，继续研发。2008年推出第1版。Android在正式发行之前，最开始拥有两个内部测试版本，并且以著名的机器人名称来对其进行命名，它们分别是：阿童木（AndroidBeta），发条机器人（Android 1.0）。后来由于涉及到版权问题，谷歌将其命名规则变更为用甜点作为它们系统版本的代号的命名方法。甜点命名法开始于Android 1.5发布的时候。作为每个版本代表的甜点的尺寸越变越大，然后按照26个字母数序：纸杯蛋糕（Android 1.5），甜甜圈（Android 1.6），松饼（Android 2.0/2.1），冻酸奶（Froyo，Android 2.2），姜饼（Gingerbread，Android 2.3），蜂巢（Honeycomb，Android 3.0），冰激凌三明治（Ice Cream Sandwich，Android 4.0），果冻豆（Jelly Bean，Android4.1和Android 4.2），奇巧（KitKat，Android 4.4），棒棒糖（Lollipop，Android 5.0），棉花糖（Marshmallow，Android 6.0），牛轧糖（Nougat，Android 7.0）。
+
+介绍了Android的系统架构，即linux内核层，系统运行库层，应用框架层，应用层。
+
+介绍了Android四大组件，即活动（Activity），服务（Service），广播接收器（Broadcast Receiver），内容提供器（Content Provide）。
+
+环境搭建也是一种修炼，可以找个教程照做，我经过的"坑"是没注意区分操作系统是32位还是64位。
+
+经典的HelloWorld程序，通过这个最简单的程序分析，介绍项目文件构成。这本书中采用的开发环境是Ecplise+ADT，虽然与AS不同，但并不影响理解。
+
+日志工具。通过引用android.util.Log类，在程序运行时打印出一些信息，帮忙理解程序行为和监测程序运行状态。常用方法有：
+Log.v()，对应级别verbose，事无钜细，啥啥都显示。
+Log.d()，对应级别debug，调试信息。两个字符串参数，前者为Tag，后者为信息。
+Log.i()，对应级别info，重要数据，有助于分析用户行为。
+Log.w()，对应级别warn，警告信息。
+Log.e()，对应级别error，错误信息，出现严重问题，要尽快修复
+
+
+第2章 详细介绍Android四大组件之一的活动（Activity）。一个Acitivity需要三个文件来配合：java类文件，布局文件xml，配置注册。本章穿插介绍了几个基本技术。
+
+一是隐藏标题栏。可以在onCreate()方法中添加：requestWindowFeature(window.FEATURE_NO_TITLE)；然后在setContentView()。
+
+二是使用Toast。在程序运行时可以通过Toast反馈一些运行提示信息，形式是屏幕底部弹出文本信息。基本用法是:
+Toast.makeText(当前活动类名称.this,"显示信息",Toast.LENGTH_SHORT).show(); 这里Toast.LENGTH_SHORT是设定弹出信息保留在屏幕上的时间为短，相应的还可以为Toast.LENGTH_LONG。
+
+三是设置按钮响应动作。要在活动类中调用setOnClickListener()方法为按钮注册监听器。有两种方法:
+
+一种是紧凑式，如：
+
+button.setOnClickListener(new OnClickListener() {
+	public void onClick(View v) {
+		// 这里是按钮被按下以后的动作代码。	
+	}	
+});
+
+另一种是接口式，在第3章中会出现。活动类实现监听器接口。
+
+public class MainActivity extends Activity implements OnClickListener {
+	......
+	protected void onCreate(...) {
+		...
+		button.setOnClickListener(this);
+		...
+	}
+	
+	public void onClick(View v) {
+		switch(v.getId()) {
+			case R.id.buttion:
+				...;// 这里是按钮被按下以后的动作代码。
+				break;
+			default: break;
+		}
+	}
+}
+
+以上这两种方式，各有其使用的环境。紧凑式适用于按钮不多时，而接口式可以在活动中有多个按钮时使用。当然，只用一种也可以。
+
+四是使用MENU。在res目录下新建menu目录，在其下建立main.xml，设置菜单布局。在活动中重写onCreateOptionsMenu()方法以显示菜单，重写onOptionsItemSelected()方法以响应菜单。
+public boolean onCreateOptionsMenu(Menu menu) {
+	getMenuInflate().inflate(R.menu.main, menu);
+	return true;
+}
+
+public boolean onOptionsItemSelected(MenuItem item){
+	switch(item.getItemId()) {
+		case R.id.xx_item:
+			// do something
+			break;
+		case R.id.xx_item:
+			// do something
+			break;
+		default:
+			break;
+	}
+	return true;
+}
+
+五是销毁活动。在活动中onClick()方法中调用finish()方法。
+
+六是使用Intent。这是本章中的一个重点，使用Intent在活动之间传递数据。activity、service和broadcast receiver之间是通过Intent进行通信的，而组件Content Provider本身是一种通信机制，不需要通过Intent。这三种组件发送intent的机制不同：
+
+使用Context.startActivity() 或Activity.startActivityForResult()，传入一个intent来启动一个activity。使用 Activity.setResult()，传入一个intent从activity中返回结果。
+
+将intent对象传给Context.startService()来启动一个service或者传消息给一个运行的service。将intent对象传给 Context.bindService()来绑定一个service。
+
+将intent对象传给 Context.sendBroadcast()，Context.sendOrderedBroadcast()，或者Context.sendStickyBroadcast()等广播方法，则它们被传给 broadcast receiver。
+
+Intent的相关属性：component(组件)：目的组件，action（动作）：用来表现意图的行动，category（类别）：用来表现动作的类别，data（数据）：表示与动作要操纵的数据，type（数据类型）：对于data范例的描写，extras（扩展信息）：扩展信息，Flags（标志位）：期望这个意图的运行模式。
+
+Intent类型分为显式Intent（直接类型）、隐式Intent（间接类型）。上述属性component为直接类型，其他均为间接类型。官方建议使用隐式Intent。
+
+使用显示Intent方式时不需要在AndroidMenifest.xml文件中去相应的活动设置<intent-filter>。为什么官方不推荐这种方式？
+
+隐式Intnet不明确指出要启动哪一个活动，而是指定一系列更为抽象的action和category等信息，然后交由系统去分析找出合适的活动去启动。因此，隐式Intent可以跨应用启动。如果想隐式intent也不可以被跨应用启动只需要在androidmanifest.xml对应的activity中配置android:exported="false"即可。
+
+使用隐式intent启动activity时如果有两个action配置一样，那么启动时系统就会弹出对话框让你选择去启动哪一个。[以上内容也参考了相关网站内容。]
+
+显示Intent。在一个活动中启动另一个活动，Intent有多个构造函数。其中一个是Intent(Context packageContext, Class<?> class)。第二个参数是要启动的目标活动。常见写法：
+Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+startActivity(intent);
+
+隐式Intent。Intent指定action，category等信息，交由系统去匹配。匹配原则由AndroidMenifest.xml中活动设置中指定。
+
+AndroidManifest.xml文件对Activity进行注册:
+
+<activity android:name=".MainActivity">
+	<inten-filter>
+		<action android:name="android:intent.action.MAIN" />
+		<category android:name="android:intent.category.LAUCHER"/>
+	</intent-filter>
+</activity>
+<activity>
+	<intent-filter>
+		<action android:name="com.example.activitytest.ACTION_START" />
+		<category android:name="android.intent.category.DEFAULT" />
+	</intent-filter>
+</activity>
+
+调用：
+
+public void onClick(View v) {
+	Intent intent = new Intent("com.example.activitytest.ACTION_START");
+	startActivity(intent);
+}
+
+本章还介绍了其他两种隐式Intent用法:
+
+调用浏览器打开网页
+
+Intent intent = new Intent(Intent.ACTION_VIEW);
+intent.setData(Uri.parse("http://www.xxx.com"));
+startActivity(intent);
+
+系统拨号
+
+Intent intent = new Intent(Intent.ACTION_DIAL);
+intent.setData(Uri.parse("tel:10086"));
+startActivity(intent);
+
+向活动传递数据。基本思路是利用putExtra()方法将想要传递的数据存在Intent中，启动另一个活动后，再把这些活动取出来。
+
+活动的生命周期
+
+Android系统使用任务(Task)来管理活动(Activity)，一个任务可以包括多个活动，这些活动按照先进后出的原则保存在栈(Back Stack)中。
+
+每个活动可能会有四个状态：运行态、暂停态、停止态、销毁态。 
+
+Run     运行态  TS(Top of Stack)
+Pause   暂停态  Visiable, not TS
+Stop    停止态  unvisiable, not TS
+Destroy 销毁态  RS(Remove from Stack)
+
+Activity 的七个回调方法：
+1 onCreate()  -----+
+2 onStart()   ---+ |
+3 onResume()  -+ | | 
+4 onPause()   -+ | |
+5 onStop()    ---+ |
+6 onDestroy() -----+
+7 onRestart()
+
+前六种方法两两相对。1与6之间是活动的完整生存期，1中是各种初始化操作，6是释放内存。2与5之间是可见生存期，2中可加载资源，5中可以释放资源。3与4之间是前台生存期，运行，可交互。
+
+介绍了活动的四种启动模式，standard, singleTop, singleTask和singleInstance。在AndroidManifest.xml中，指定 <activity>标签的android:launchMode属性来设定启动模式。各种模式之间有所不同，可根据需要设置。
+
+getClass().getSimpleName() 可以返回当前活动名称。
+
+
+
+
+
+
+
